@@ -58,11 +58,16 @@ GS_EXPORT_CLASS
   NSDate *_expirationDate;
   NSSet *_keywords;
   id<NSUserActivityDelegate> _delegate;
-  NSString *_targetContentIndentifier;
-
+  NSString *_targetContentIdentifier;
+  NSString *_persistentIdentifier;
+  
   BOOL _supportsContinuationStreams;
   BOOL _needsSave;
   BOOL _valid;
+  BOOL _eligibleForPrediction;
+  BOOL _eligibleForPublicIndexing;
+  BOOL _eligibleForSearch;
+  BOOL _eligibleForHandoff;
 }
 
 - (instancetype) initWithActivityType: (NSString *)activityType;
