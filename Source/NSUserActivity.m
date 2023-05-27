@@ -22,15 +22,27 @@
    Boston, MA 02110 USA.
 */
 
-#include <Foundation/NSUserActivity.h>
+#import "Foundation/NSDate.h"
+#import "Foundation/NSDictionary.h"
+#import "Foundation/NSString.h"
+#import "Foundation/NSSet.h"
+#import "Foundation/NSURL.h"
+#import "Foundation/NSUserActivity.h"
+
+static NSUserActivity *__currentUserActivity = nil;
 
 @implementation NSUserActivity
 
 - (instancetype) initWithActivityType: (NSString *)activityType
 {
   self = [super init];
+  
   if (self != nil)
     {
+      ASSIGNCOPY(_activityType, activityType);
+      _userInfo = [[NSMutableDictionary alloc] init];
+      _requiredUserInfoKeys = [[NSMutableSet alloc] initWithCapacity: 10];
+      _keywords = [[NSMutableSet alloc] init];
     }
 
   return self;
@@ -39,19 +51,42 @@
 - (instancetype) init
 {
   self = [super init];
+
   if (self != nil)
     {
+      _activityType = nil;
     }
 
   return self;
-} 
+}
+
+- (void) dealloc
+{
+  __currentUserActivity = nil;
+  _delegate = nil;
+
+  RELEASE(_activityType);
+  RELEASE(_title);
+  RELEASE(_userInfo);
+  RELEASE(_requiredUserInfoKeys);
+  RELEASE(_webpageURL);
+  RELEASE(_referrerURL);
+  RELEASE(_expirationDate);
+  RELEASE(_keywords);
+  RELEASE(_targetContentIdentifier);
+  RELEASE(_persistentIdentifier);
+
+  [super dealloc];
+}
 
 - (void) becomeCurrent
 {
+  __currentUserActivity = self;
 }
 
 - (void) resignCurrent
 {
+  __currentUserActivity = nil;
 }
 
 - (void) invalidate
