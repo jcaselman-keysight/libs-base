@@ -50,13 +50,7 @@ static NSUserActivity *__currentUserActivity = nil;
 
 - (instancetype) init
 {
-  self = [super init];
-
-  if (self != nil)
-    {
-      _activityType = nil;
-    }
-
+  self = [self initWithActivityType: nil];
   return self;
 }
 
