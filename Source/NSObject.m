@@ -2646,9 +2646,9 @@ GSPrivateMemorySize(NSObject *self, NSHashTable *exclude)
 #endif
 
 #if 	HAVE_MALLOC_USABLE_SIZE
-  size = malloc_usable_size((void*)self - sizeof(intptr_t));
+  size = malloc_usable_size((void*)self - sizeof(intptr_t))
 #else
-  size = class_getInstanceSize(object_getClass(self));
+  size = class_getInstanceSize(object_getClass(self))
 #endif
 
   return size;
