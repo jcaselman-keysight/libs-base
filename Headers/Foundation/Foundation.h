@@ -137,6 +137,7 @@
 #import	<Foundation/NSURLProtocol.h>
 #import	<Foundation/NSURLRequest.h>
 #import	<Foundation/NSURLResponse.h>
+#import	<Foundation/NSURLSession.h>
 #import	<Foundation/NSUserDefaults.h>
 #import	<Foundation/NSUserNotification.h>
 #import	<Foundation/NSUUID.h>

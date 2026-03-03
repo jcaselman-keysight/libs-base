@@ -344,6 +344,13 @@ ifeq ($(GNUSTEP_BASE_HAVE_AVAHI), 1)
                  GSAvahiRunLoopIntegration.m
 endif
 
+ifeq ($(GNUSTEP_BASE_HAVE_NSURLSESSION), 1)
+  BASE_MFILES += \
+	NSURLSession.m \
+	NSURLSessionTask.m \
+	NSURLSessionConfiguration.m
+endif
+
 ifeq ($(WITH_FFI),libffi)
 GNU_MFILES += cifframe.m
 BASE_MFILES += GSFFIInvocation.m
@@ -470,6 +477,7 @@ NSURLProtectionSpace.h \
 NSURLProtocol.h \
 NSURLRequest.h \
 NSURLResponse.h \
+NSURLSession.h \
 NSUserDefaults.h \
 NSUserNotification.h \
 NSUtilities.h \

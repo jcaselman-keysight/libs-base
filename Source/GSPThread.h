@@ -59,6 +59,13 @@ static inline void GSPThreadInitRecursiveMutex(pthread_mutex_t *x)
 }
 # endif // PTHREAD_RECURSIVE_MUTEX_INITIALIZER(_NP)
 
+/* Portable mutex macros used by NSURLSession */
+#define GS_MUTEX_INIT_STATIC PTHREAD_MUTEX_INITIALIZER
+#define GS_MUTEX_INIT(x) pthread_mutex_init(&(x), NULL)
+#define GS_MUTEX_LOCK(x) pthread_mutex_lock(&(x))
+#define GS_MUTEX_TRYLOCK(x) pthread_mutex_trylock(&(x))
+#define GS_MUTEX_UNLOCK(x) pthread_mutex_unlock(&(x))
+#define GS_MUTEX_DESTROY(x) pthread_mutex_destroy(&(x))
 
 /* Class to obtain/encapsulate a stack trace for exception reporting and/or
  * lock tracing.
